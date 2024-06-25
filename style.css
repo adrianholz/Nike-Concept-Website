@@ -96,8 +96,17 @@ a {
 body {
   line-height: 1;
   font-family: "Inter", sans-serif;
-  background: linear-gradient(to bottom right, #232323, #161616);
-  padding-left: 110px;
+  padding-left: 100px;
+}
+
+.gradient-background {
+  background: linear-gradient(to bottom right, #0e0e0e, #232323);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8vw), 0 100%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8vw), 0 100%);
+  transform: translateX(-120%);
+  animation: anime-left 1.25s ease-out forwards;
+  position: relative;
+  animation-delay: 0.75s;
 }
 
 ol,
@@ -138,20 +147,61 @@ strong {
   color: #fff;
 }
 
-.header-sidebar {
-  background: linear-gradient(to bottom right, #a9a9a9, #f4f4f4);
+.sidebar {
+  background: linear-gradient(to bottom right, #878787, #ffffff);
   max-width: 150px;
   position: fixed;
+  z-index: 10;
   left: 0;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  transform: translateX(-120%);
+  animation: anime-up 0.85s ease 0.15s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes anime-left {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes anime-up {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes anime-down {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes anime-right {
+  from {
+    transform: translateX(150%);
+  }
+  to {
+    transform: translateX(0) rotate(-25deg);
+    filter: drop-shadow(0px 5px 5px #000000);
+  }
 }
 
 .logo {
-  max-width: 110px;
+  max-width: 100px;
 }
 
 .header-icons {
@@ -161,16 +211,17 @@ strong {
   margin-bottom: 30px;
 }
 
-.header-sidebar p {
+.sidebar p {
   text-transform: uppercase;
   writing-mode: vertical-rl;
   text-orientation: mixed;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.85rem;
 }
 
 .header-icons img {
   max-width: 30px;
+  cursor: pointer;
 }
 
 .main-inner {
@@ -179,12 +230,14 @@ strong {
   align-items: center;
   margin: 0 auto;
   max-width: 1200px;
-  padding: 120px 40px;
+  padding: 120px 40px 180px 40px;
 }
 
 .main-content {
   max-width: 460px;
   color: #fff;
+  z-index: 2;
+  position: relative;
 }
 
 .main-content h1 {
@@ -192,10 +245,15 @@ strong {
   text-transform: uppercase;
   font-style: italic;
   font-weight: 800;
+  background: -webkit-linear-gradient(#ffffff, #878787);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .main-content h2 {
   font-size: 2rem;
+  color: #d1d1d1;
   text-transform: uppercase;
   font-style: italic;
   font-weight: 500;
@@ -212,14 +270,77 @@ strong {
 .main-inner img {
   max-width: 700px;
   width: 100%;
-  transform: rotate(-25deg);
-  animation: floating 2s ease-in-out infinite alternate;
-  filter: drop-shadow(0px 15px 10px #000000);
+  animation: floating 2s ease-in-out 1.95s infinite alternate,
+    anime-right 1s ease-out 0.95s;
+  transform: translateX(150%);
+}
+
+.main-inner::before {
+  content: "NIKE";
+  font-size: 20rem;
+  font-style: italic;
+  font-weight: 800;
+  position: absolute;
+  z-index: 0;
+  right: 20px;
+  width: 800px;
+  display: block;
+  background: -webkit-linear-gradient(#1b1b1b, rgb(35, 35, 35));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .call-to-action {
   padding: 12px 24px;
   border: 1px solid #fff;
+}
+
+.products {
+  padding: 40px 20px 80px 20px;
+}
+
+.products-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.products-inner h2 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-style: italic;
+  color: #161616;
+  max-width: fit-content;
+  margin: 0 auto;
+  position: relative;
+}
+
+.products-inner h2::after,
+.products-inner h2::before {
+  content: "";
+  display: block;
+  width: 150px;
+  background: #161616;
+  position: absolute;
+  height: 6px;
+  bottom: -6px;
+  right: 0;
+}
+
+.products-inner h2::before {
+  bottom: initial;
+  top: -6px;
+  left: 0;
+  right: initial;
+}
+
+.collection {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  margin-top: 80px;
+  text-align: center;
 }
 
 @keyframes floating {
@@ -244,6 +365,11 @@ strong {
     display: block;
     max-width: 600px;
   }
+  .main-inner::before {
+    font-size: 14rem;
+    width: 540px;
+    bottom: 200px;
+  }
 }
 
 @media (max-width: 700px) {
@@ -255,9 +381,10 @@ strong {
   }
   header nav ul {
     padding: 25px 20px;
+    gap: 30px 10px;
   }
   .main-inner {
-    padding: 40px;
+    padding: 40px 40px 100px 40px;
     text-align: center;
   }
   .main-content {
@@ -271,6 +398,9 @@ strong {
   }
   .main-inner img {
     transform: initial;
+  }
+  .main-inner::before {
+    display: none;
   }
   @keyframes floating {
     0% {
