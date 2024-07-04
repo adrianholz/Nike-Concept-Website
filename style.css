@@ -136,6 +136,13 @@ body {
   animation-delay: 0.75s;
 }
 
+.product-page-header {
+  clip-path: unset;
+  -webkit-clip-path: unset;
+  animation: unset;
+  transform: unset;
+}
+
 ol,
 ul {
   list-style: none;
@@ -190,6 +197,11 @@ strong {
   animation-fill-mode: forwards;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 0px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 0px 16px -8px;
+}
+
+.product-page-sidebar {
+  transform: unset;
+  animation: unset;
 }
 
 .categories {
@@ -549,6 +561,68 @@ footer img {
   text-transform: none;
   font-weight: 500;
   line-height: 2rem;
+}
+
+.product-page {
+  padding: 120px 0;
+}
+
+.product-page-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 40px;
+  padding: 0 20px 40px 20px;
+}
+
+.product-page-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-page-item .call-to-action {
+  margin-top: 5px;
+  text-align: center;
+  color: #161616;
+  font-weight: 500;
+  border: 2px solid #161616;
+}
+
+.product-page-item .call-to-action:hover {
+  background: #161616;
+  color: #fff;
+}
+
+.product-page-item h2 {
+  font-size: 1.125rem;
+  color: #232323;
+  letter-spacing: -0.0125rem;
+  font-weight: 600;
+}
+
+.product-page-inner img {
+  width: 270px;
+  height: 240px;
+  object-fit: cover;
+  background: #f6f6f6;
+  border-radius: 10px;
+}
+
+.product-page-item span {
+  font-weight: 400;
+  color: #878787;
+}
+
+.product-page-background {
+  background-image: unset;
+  background: #f6f6f6;
+}
+
+.top-marquee {
+  margin-bottom: -40px;
 }
 
 @keyframes floating {
