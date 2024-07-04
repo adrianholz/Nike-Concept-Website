@@ -600,7 +600,7 @@ footer img {
 }
 
 @media (max-height: 660px) {
-  .header-sidebar p {
+  .sidebar p {
     display: none;
   }
 }
@@ -618,7 +618,7 @@ footer img {
 }
 
 @media (max-width: 700px) {
-  .logo {
+  #logo {
     max-width: 70px;
   }
   body {
